@@ -24,11 +24,11 @@ env:
 
 
 before_install:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar install
+    - wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
 
 # Grab the setup script and execute
 before_script:
+    - phpversion=$(phpenv version); if [[ $phpversion =~ 5\.3\.3.* ]]; then composer install --dev --prefer-source; else composer install --dev; fi;
     - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
     - source setup.sh
 
