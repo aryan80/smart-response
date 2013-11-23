@@ -15,6 +15,6 @@ before_install:
 
 before_script:
     # set up WP install
-    - cd wp-admin
+    - cd wp-content/plugins/smart_response/test
 
 script: phpunit
