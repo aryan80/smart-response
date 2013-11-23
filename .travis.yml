@@ -15,6 +15,6 @@ before_install:
 
 before_script:
     # set up WP install
-    - cd ..
+    - cd wp-admin
 
 script: phpunit
