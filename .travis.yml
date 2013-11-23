@@ -6,8 +6,6 @@ language: php
 # Versions of PHP to test against
 php:
     - "5.2"
-    - "5.3"
-    - "5.4"
 
 # Specify versions of WordPress to test against
 # WP_VERSION = WordPress version number (use "master" for SVN trunk)
@@ -24,11 +22,10 @@ env:
 
 
 before_install:
-    - wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
+
 
 # Grab the setup script and execute
 before_script:
-    - phpversion=$(phpenv version); if [[ $phpversion =~ 5\.3\.3.* ]]; then composer install --dev --prefer-source; else composer install --dev; fi;
     - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
     - source setup.sh
 
