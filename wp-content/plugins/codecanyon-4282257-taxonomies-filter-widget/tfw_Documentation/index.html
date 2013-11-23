@@ -1,0 +1,430 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Taxonomies Filter Widget - WordPress plugin</title>
+	
+	<meta name="description" content="Thank you for purchasing my plugin. If you have any questions that are beyond the scope of this help file, please feel free to email me via my user page contact form here. Thanks so much!">
+	<meta name="author" content="Cristian Ionel">
+	<meta name="copyright" content="Cristian Ionel">
+	<meta name="generator" content="Documenter v1.6 http://rxa.li/documenter">
+	<meta name="date" content="2013-03-15T00:00:00+01:00">
+	
+	<link rel="stylesheet" href="css/documenter_style.css" media="all">
+	
+	
+	<script src="js/jquery.1.6.4.js"></script>
+	
+	<script src="js/jquery.scrollTo-1.4.2-min.js"></script>
+	<script src="js/jquery.easing.js"></script>
+	
+	<link rel="stylesheet" href="css/shDocumenter.css" media="screen">
+	<script src="js/shCore.js"></script>
+	<script src="js/shBrushCss.js"></script>
+	<script src="js/shBrushJScript.js"></script>
+	<script>SyntaxHighlighter.defaults['toolbar'] = false;SyntaxHighlighter.all();</script>
+
+	<script>document.createElement('section');var duration=500,easing='swing';</script>
+	<script src="js/script.js"></script>
+	
+	<style>
+		html{background-color:#EEEEEE;color:#383838;}
+		::-moz-selection{background:#333636;color:#00DFFC;}
+		::selection{background:#333636;color:#00DFFC;}
+		#documenter_sidebar #documenter_logo{background-image:url(assets/images/image_6.png);}
+		a{color:#008C9E;}
+		hr{border-top:1px solid #D4D4D4;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ol a{background-color:#343838;color:#FFFFFF;}
+		#documenter_sidebar ol a{-webkit-text-shadow:1px 1px 0px #494F4F;-moz-text-shadow:1px 1px 0px #494F4F;text-shadow:1px 1px 0px #494F4F;}
+		#documenter_sidebar ol{border-top:1px solid #212424;}
+		#documenter_sidebar ol a{border-top:1px solid #494F4F;border-bottom:1px solid #212424;color:#FFFFFF;}
+		#documenter_sidebar ol a:hover{background:#333636;color:#00DFFC;border-top:1px solid #333636;}
+		#documenter_sidebar ol a.current{background:#333636;color:#00DFFC;border-top:1px solid #333636;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+</head>
+<body>
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ol id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+			<li><a href="#introduction">Introduction</a></li>
+			<li><a href="#installation">Installation</a></li>
+			<li><a href="#plugin_description">Plugin Description</a>
+				<ol>
+					<li><a href="#plugin_description_emfields_description_em">Fields description</a>
+				</ol>
+			</li>
+			<li><a href="#getting_started">Getting Started</a>
+				<ol>
+					<li><a href="#getting_started_open_widget_39s_options_panel">Open widget&#39;s options panel</a>
+					<li><a href="#getting_started_set_a_title">Set a title</a>
+					<li><a href="#getting_started_choosing_what_will_be_displayed">Choosing what will be displayed</a>
+					<li><a href="#getting_started_ordering">Ordering</a>
+					<li><a href="#getting_started_display_options">Display options</a>
+					<li><a href="#getting_started_advanced_options">Settings Page</a>
+				</ol>
+			</li>
+			<li><a href="#additional_explanations">Additional explanations</a>
+				<ol>
+					<li><a href="#additional_explanations_multiple_terms_relation">Multiple terms relation</a>
+				</ol>
+			</li>
+			<li><a href="#css_files_and_structure">CSS Files and Structure</a>
+				<ol>
+					<li><a href="#css_files_and_structure_admin.css">admin.css</a>
+					<li><a href="#css_files_and_structure_widget.css">widget.css</a>
+					<li><a href="#css_files_and_structure_edit_the_css_file">Edit the CSS file</a>
+				</ol>
+			</li>
+			<li><a href="#javascript">JavaScript</a>
+				<ol>
+					<li><a href="#javascript_admin.js">admin.js</a>
+					<li><a href="#javascript_widget.js">widget.js</a>
+				</ol>
+			</li>
+			<li><a href="#php_files">PHP Files</a>
+				<ol>
+					<li><a href="#php_files_plugin.php">plugin.php</a>
+					<li><a href="#php_files_admin.php">admin.php</a>
+					<li><a href="#php_files_widget.php">widget.php</a>
+				</ol>
+			</li>
+			<li><a href="#sources_and_credits">Sources and Credits</a></li>
+
+		</ol>
+		<div id="documenter_copyright">Copyright Cristian Ionel 2013<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v1.6</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover"><h1>Taxonomies Filter Widget</h1><h2>WordPress plugin</h2><hr><ul><li>Created: 03/14/2013</li><li>Latest Update: 05/23/2013</li><li>Version:  2.0</li><li>By: Cristian Ionel</li><li><a href=""></a></li><li>Email: <a href="mailto:&#99;&#114;&#105;&#115;&#116;&#105;&#97;&#110;&#46;&#105;&#111;&#110;&#101;&#108;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#99;&#114;&#105;&#115;&#116;&#105;&#97;&#110;&#46;&#105;&#111;&#110;&#101;&#108;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li></ul><p>Thank you for purchasing my plugin. If you have any questions that are beyond the scope of this help file, please feel free to email me via my user page contact form <a href="http://codecanyon.net/user/waylay">here</a>. Thanks so much!</p></section><section id="introduction">
+	<h3>Introduction</h3><hr class="notop">
+<p>
+	<strong>Taxonomies Filter Widget</strong> creates a widget that acts as a filter for your WordPress <strong>categories</strong>, <strong>tags</strong> and <strong>taxonomies</strong>. Visitors will be able to do faceted searches on your site and filter posts using drop-downs, checkboxes and radio buttons. While built especially for sites with a variety of categories, custom taxonomies and custom posts (<em>eg: shops, directories, tutorials, job boards or listings</em>), this plugin will also do a great job at filtering the standard WordPress posts by categories, tags and even post format.</p>
+</section>
+<section id="installation">
+	<h3>Installation</h3><hr class="notop">
+<p>
+	In the ZIP file that you downloaded from Codecanyon, you will see a directory called <strong>twf_wordpress_plugin</strong>. Inside this directory is a ZIP file called<strong> taxonomies-filter-widget.zip</strong> which is the actual WordPress plugin. Now you can either:</p>
+<ul>
+	<li>
+		Extract and upload this folder manually, using you favorite FTP software, inside the <em><span class="file">wp-content/plugins/</span></em>&nbsp; folder on your WordPress blog. If you choose this option, you will have to activate this plugin after you upload it, by clicking the &quot;Activate&quot; link found in &quot;Plugins / Installed Plugins&quot;, under the plugin called &quot;Taxonomies Filter Widget<strong>&quot;</strong>.</li>
+	<li>
+		Log In as an Admin on your WordPress blog and click on the &quot;Add New&quot; link found under the &quot;Plugins&quot; tab. Now, from the available options at the top of the page, click on &quot;Upload&quot; and then &quot;Browse&quot;. Locate the ZIP file <strong>taxonomies-filter-widget.zip</strong>, press OK then click the &quot;Install Now&quot; button. After the upload is finished, click Activate Plugin.</li>
+</ul>
+<p>
+	<img alt="" src="assets/images/install.JPG" style="width: 574px; height: 416px; float: left; margin-left: 20px; margin-right: 20px;"></p>
+<p>
+	Regardless of the installation method you used, after you have activated the plugin, please click on the &quot;Widgets&quot; link under the &quot;Appearance&quot; tab. There, you will see a new Widget available for you, called <em><strong>Taxonomies Filter</strong></em>. This is how it should look like:</p>
+<p>
+	<img alt="preview" src="assets/images/image_3.jpg" style="width: 268px; height: 62px; margin-top: 10px; margin-bottom: 10px;"></p>
+<p>
+	Now drag the <em><strong>Taxonomies Filter </strong></em>widget inside the widgetized area you want it displayed (eg: Sidebar).</p>
+<p>
+	<img alt="" src="assets/images/image_5.jpg" style="width: 311px; height: 169px; margin-top: 10px; margin-bottom: 10px;"></p>
+<p>
+	The last step is to click the down arrow handle in order to customize your widget. Please see the next section for the available options.</p>
+<p>
+	&nbsp;</p>
+<div style="clear:both">
+	&nbsp;</div>
+</section>
+<section id="plugin_description">
+	<h3>Plugin Description</h3><hr class="notop">
+<p>
+	<img alt="" src="assets/images/image_1.jpg" style="width: 265px; height: 750px; float: left; margin-right: 20px; margin-left: 20px;"></p>
+<p class="prepend-top append-0">
+	This is an example of the widget&#39;s backend interface. If you want to see it live, i have set up a demonstration website <a href="http://webcodesigner.com/">here</a>.</p>
+<h4 id="plugin_description_emfields_description_em"><em>Fields description</em></h4>
+<p>
+	<strong>Title:</strong> This is where you set the widget&#39;s title.This title will be displayed on your website.&nbsp;</p>
+<p>
+<p>
+	<strong>Select Post Type:</strong> From this dropdown you can select which post type you want to be filtered. When you switch from one post type to another, you will still have the previous selected taxonomies available but i suggest you use only taxonomies specific to that post type.&nbsp;</p>
+<p>	
+	<strong>Taxonomies for:</strong> This is a list with all the available taxonomies registered on your website. Besides the built in ones (like: <strong>Categories, Tags, Post Format</strong>), this list will also include all the custom taxonomies that you have registered for both regular and custom posts. Updates any time you change the post type.</p>
+<ul>
+	<li>
+		This list is sortable. Just click on any item and drag it to the desired position.</li>
+	<li>
+		Each taxonomy has its own specific display option (dropdown, radio, checkbox).</li>
+	<li>
+		Each display option will respect taxonomy&#39;s hierarchical structure.</li>
+	<li>
+		Dropdowns will act as a <strong>drill down</strong> only for hierarchical taxonomies.</li>
+	<li>
+		When you click the save button, taxonomies that you&#39;ve selected will be put automatically on top of the list .
+	
+	</li>
+</ul>
+<p>	
+	<strong>Custom fields:</strong> This is a list with all the available custom fields registered on your website, for the post type you selected. This list will be populated only with the custom fields that have <b>numeric</b> values, because the filter will use the values to display posts that are between the minimum and maximum value set the by the user.</p>
+<ul>
+	<li>You enable the custom field as a filter by clicking on the checkbox placed on the left side of the name;</li>
+	<li>Use the label field to set the name displayed on the front-end.</li>
+	<li>Min and Max value will automatically load the minimum and maximum value found for that specific custom field, but you can set you own value!</li>
+	<li><b>Step</b> is used by the range option and will set the step size of the slider when you drag it.</li>
+	<li><b>Unit</b> will be displayed close to custom field value (left side). Ex: kg, $, EUR, m;</li>
+	<li><b>Mode</b> allows you to change the way the custom field filter is displayed, you can choose between 2 input boxes (min and max) and a range slider.
+	<p class="info">
+			<em>Suggestion:</em> When you have custom posts, build your filters using only taxonomies registered for that specific custom post type. You can build as many widgets as you like, for each custom post that you have.</p>
+	</li>
+	<li><strong>Search box label:</strong> Only applies if "Display the checkbox?" option is checked. This option sets the label for the search input.</li>
+	<li><strong>Reset button label:</strong> Text displayed as the reset link.</li>
+	<li><strong>Search button label:</strong> Text displayed as the label of the submit button.</li>
+	<li><strong>Select all option:</strong> Text displayed on dropdowns, for selecting all taxonomies. Leave it empty if you don't want that option.</li>
+</ul>
+
+<div style="clear:both">
+	&nbsp;</div>
+</section>
+<section id="getting_started">
+	<h3>Getting Started</h3><hr class="notop">
+<p>
+	Assuming that you have followed the installation steps, now you are ready to set up your first filter. If you have followed all the steps and you still don&#39;t see the widget added to your WordPress blog,&nbsp; please feel free to email me via my user page contact form <a href="http://codecanyon.net/user/waylay">here</a> or by using the email specified on this help file.</p>
+<h4 id="getting_started_open_widget_39s_options_panel">Open widget&#39;s options panel</h4>
+<ul>
+	<li>
+		<strong>Step 1:</strong> Open your widget&#39;s configuration panel by clicking the down arrow on the right side (marked with yellow on the next image).</li>
+</ul>
+<p>
+	<img alt="" src="assets/images/step1.JPG" style="width: 267px; height: 380px; margin-left: 10px; margin-right: 10px;"></p>
+<h4 id="getting_started_set_a_title">Set a title</h4>
+<ul>
+	<li>
+		<strong>Step 2</strong>: Set a title for your widget. Depending on your theme, this will be usually displayed above your widget as a heading.</li>
+</ul>
+<p>
+	<img alt="" src="assets/images/widgettitle.JPG" style="width: 269px; height: 170px; margin-left: 10px; margin-right: 10px;"></p>
+<p>
+	&nbsp;</p>
+<h4 id="getting_started_choosing_what_will_be_displayed">Choosing what will be displayed</h4>
+<ul>
+	<li>
+		<strong>Step 3</strong>: From the dropdown menu, select which post type is this filter for. When you choose a post type, this list will automatically update with all the available taxonomies for that post type. From that list, select the ones that you want to be displayed on your blog, by clicking on the corresponding checkbox.</li>
+</ul>
+<p>
+	<img alt="" src="assets/images/checking.JPG" style="width: 265px; height: 379px; margin-left: 10px; margin-right: 10px;"></p>
+<p class="info">
+	Whenever you add a new custom taxonomy to your blog, this list will be automatically updated. There is nothing extra that you need to do.</p>
+<h4 id="getting_started_ordering">Ordering</h4>
+<ul>
+	<li>
+		<strong>Step 4:</strong> If you like the items to be displayed in a specific order, click on the one that you want to move and (while still having the mouse click pressed), drag into the desired position.</li>
+</ul>
+<p>
+	<img alt="" src="assets/images/drag.jpg" style="width: 276px; height: 387px; margin-left: 10px; margin-right: 10px;"></p>
+<h4 id="getting_started_display_options">Display options</h4>
+<ul>
+	<li>
+		<strong>Step 5</strong>: For each taxonomy you checked, select how you want it displayed from the corresponding right side menu.</li>
+</ul>
+<p>
+	For each taxonomy you have 3 available options:</p>
+<ol style="margin-left: 40px;">
+	<li>
+		dropdown</li>
+	<li>
+		multiselect</li>
+	<li>
+		checkbox</li>
+	<li>
+		radio</li>
+</ol>
+<p>
+	This option will set the way that specific option will be displayed on blog.</p>
+<p>
+	<img alt="" src="assets/images/image_2.jpg" style="width: 270px; height: 374px; margin-left: 10px; margin-right: 10px;"></p>
+<h4 id="getting_started_advanced_options">Settings page</h4>
+<ul>
+	<li>
+		<strong>Step 5</strong>: While your widget is ready to be used by now, let&#39;s have a look at the <em><strong>&quot;Settings page&quot;</strong></em>, maybe we can find something that you'll be interested in. Let&#39;s start by clicking on the <strong>Taxonomies Filter</strong> link (under the Settings menu) or the Settings link from your plugins page. This will bring up the Taxonomies Filter Widget Settings page:</li>
+</ul>
+<p>
+	<img alt="" src="assets/images/advanced.JPG" style="width: 300; height: 600px; margin-left: 20px; margin-right: 20px; float: left;"></p>
+<ul>
+	<li>
+		<strong>Auto submit form:</strong> By checking this option, the submit button will hide and the form will auto-submit whenever one of the elements change.</li>
+</ul>
+<p>
+	<em>Default</em>: <strong>Unchecked</strong>.</p>
+
+<ul>
+	<li>
+		<strong>Hide empty terms:</strong> By checking this option, terms which are not assigned to any post, will not be displayed on the frontend.</li>
+</ul>
+
+<p>
+	<em>Default</em>: <strong>Unchecked</strong>.</p>
+<ul>		
+	<li>
+		<strong>Display the search box:</strong> Check if you want a search input to be also added to the filter.</li>
+</ul>
+<p>
+	<em>Default</em>: <strong>Unchecked</strong>.</p>
+<ul>		
+	<li>
+		<strong>Display the reset button:</strong> Check if you want a reset link added at the bottom of the form.</li>
+</ul>
+<p>
+	<em>Default</em>: <strong>Unchecked</strong>.</p>	
+<ul>
+	<li>
+		<strong>Display post count:</strong> By checking this option, the number of posts to which this term as been assigned, will be appended to the right side, enclosed between <span class="st">round brackets.</span>
+		<ol>
+			<li><strong>Total</strong>: The total number of posts to which this term is assigned.</li>
+			<li><strong>Dynamic</strong>: Number of posts that have the current search query and the current term. Updates on every change in the filter.</li>
+			<li><strong>Do not display</strong>: Dynamic.</li>
+		</ol>
+		</li>
+</ul>
+<p>
+	<em>Default</em>: <strong>Dynamic</strong>.</p>
+<ul>
+	<li>
+		<strong>Multiple terms relation:</strong> This only applies to checkboxes. Please check <a href="#additional_explanations">here</a> for a more detailed explanation.</li>
+</ul>
+<ul>
+	<li>
+		<strong>Search results template:</strong> From here you can choose what template file should be used to display the filtered results. If you choose "Custom", you will have have to set "Custom template file name:" to be the name of the file you want to use. This file needs to be inside your theme directory and needs to have the Loop inside. A good way to create a custom template for your search results, would be to duplicate either the archive.php, search.php or any other template file that has the Loop inside, rename it and customize it to suit your needs.</li>
+</ul>
+
+<p>
+	&nbsp;</p>
+</section>
+<section id="additional_explanations">
+	<h3>Additional explanations</h3><hr class="notop">
+<h4 id="additional_explanations_multiple_terms_relation">Multiple terms relation</h4>
+<p class="info">
+	This option will alter how the filter behaves when someone selects multiple checkboxes. This is how it works:</p>
+<p>
+	Let&#39;s imagine we have a website with recipes, and someone is searching for a salad. We currently have 3 salad recipes available.</p>
+<ol>
+	<li>
+		<strong>Green salad:</strong> salad leaves, green olives</li>
+	<li>
+		<strong>Tropical salad:</strong> salad leaves, pineapple, cucumber, mint leaves</li>
+	<li>
+		<strong>Mixed salad:</strong> basil leaves, cucumber</li>
+</ol>
+<p>
+	Now the user selects from a lists of ingredients: <em><strong>salad leaves</strong></em> and <em><strong>cucumber</strong> </em>then clicks submit. He will receive:</p>
+<ul>
+	<li>
+		Case <strong><em>AND</em></strong>: <strong>Tropical salad</strong> - Only the recipe that has both ingredients: <strong>salad leaves</strong> <em>and</em> <strong>cucumber</strong></li>
+	<li>
+		Case <strong><em>OR</em></strong>: <strong>Green salad, Tropical salad</strong> and <strong>Mixed salad</strong> - All the recipes that have at least one of the two ingredients: <strong>salad leaves</strong> <em>or</em> <strong>cucumber</strong></li>
+</ul>
+</section>
+<section id="css_files_and_structure">
+	<h3>CSS Files and Structure</h3><hr class="notop">
+<p>
+	I&#39;m using two CSS files in this plugin located inside the <strong>/css</strong> folder. The first one <em>(admin.css)</em> is used for the admin page only while the second one <em>(widget.css)</em>, adds some basic display rules for the widget on the front end.</p>
+<h4 id="css_files_and_structure_admin.css">admin.css</h4>
+<p>
+	This file sets some basic rules for the widget&#39;s admin interface. You don&#39;t need to modify this file unless you want them to be displayed in a different way.</p>
+<pre class="prettyprint lang-css linenums"><ol class="linenums"><li class="L0"><span class="com">/* This stylesheet is used to style the admin option form of the widget. */</span></li><li class="L1"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list li</span><span class="pun">{</span></li><li class="L2"><span class="pln">    border</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1px</span><span class="pln"> solid </span><span class="com">#DDDDDD;</span></li><li class="L3"><span class="pln">    clear</span><span class="pun">:</span><span class="pln"> both</span><span class="pun">;</span></li><li class="L4"><span class="pln">    cursor</span><span class="pun">:</span><span class="pln"> move</span><span class="pun">;</span></li><li class="L5"><span class="pln">    line</span><span class="pun">-</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2.1em</span><span class="pun">;</span></li><li class="L6"><span class="pln">    overflow</span><span class="pun">:</span><span class="pln"> hidden</span><span class="pun">;</span></li><li class="L7"><span class="pln">    padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">5px</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list li </span><span class="kwd">select</span><span class="pun">{</span></li><li class="L0"><span class="pln">    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln">right</span><span class="pun">;</span></li><li class="L1"><span class="pun">}</span></li><li class="L2"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list li input</span><span class="pun">[</span><span class="pln">type</span><span class="pun">=</span><span class="str">"checkbox"</span><span class="pun">],</span></li><li class="L3"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list li input</span><span class="pun">[</span><span class="pln">type</span><span class="pun">=</span><span class="str">"radio"</span><span class="pun">],</span></li><li class="L4"><span class="com">#taxonomies-filter-advanced input[type="checkbox"],</span></li><li class="L5"><span class="com">#taxonomies-filter-advanced input[type="radio"]{</span></li><li class="L6"><span class="pln">    margin</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_taxonomy</span><span class="pun">{</span></li><li class="L9"><span class="pln">    background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="com">#E7F2F5;</span></li><li class="L0"><span class="pun">}</span></li><li class="L1"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_cf_li</span><span class="pun">{</span></li><li class="L2"><span class="pln">    padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5px</span><span class="pln"> </span><span class="lit">10px</span><span class="pun">;</span></li><li class="L3"><span class="pln">    background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="com">#F2F2E9;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_cf_li label</span><span class="pun">{</span></li><li class="L6"><span class="pln">    width</span><span class="pun">:</span><span class="lit">25px</span><span class="pun">;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_cf_label</span><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln"> right</span><span class="pun">;</span></li><li class="L0"><span class="pln">    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">80</span><span class="pun">%;</span></li><li class="L1"><span class="pun">}</span></li><li class="L2"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_cf_mode</span><span class="pun">{</span></li><li class="L3"><span class="pln">    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span></li><li class="L4"><span class="pln">    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">43</span><span class="pun">%;</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_cf_unit</span><span class="pun">{</span></li><li class="L7"><span class="pln">    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span></li><li class="L8"><span class="pln">    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">23</span><span class="pun">%;</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_cf_min_max</span><span class="pun">{</span></li><li class="L1"><span class="pln">    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">42px</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">-</span><span class="pln">list </span><span class="pun">.</span><span class="pln">tfw_cf_step</span><span class="pun">{</span></li><li class="L4"><span class="pln">    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">24px</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre>
+<h4 id="css_files_and_structure_widget.css">widget.css</h4>
+<p>
+	This is the stylesheet responsable for how the widget displays on you blog. The CSS options set here are just to make sure the labels, dropdowns, checkboxes, radio buttons and input elements display correctly.</p>
+<p class="info">
+	The stylesheet does not apply any colors, borders or fixed width (except the size of the Ajax loading image). This way, the widget will obey the CSS rules applied by your theme and it will nicely blend in.</p>
+<pre class="prettyprint lang-css linenums"><ol class="linenums"><li class="L0"><span class="com">/* This stylesheet is used to style the public view of the widget. */</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">{</span></li><li class="L3"><span class="pln">    clear</span><span class="pun">:</span><span class="pln"> both</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form</span><span class="pun">{</span></li><li class="L7"><span class="pln">    max</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%;</span></li><li class="L8"><span class="pln">    padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0.5em</span><span class="pln"> </span><span class="lit">1em</span><span class="pun">;</span></li><li class="L9"><span class="pln">    overflow</span><span class="pun">:</span><span class="pln"> hidden</span><span class="pun">;</span></li><li class="L0"><span class="pun">}</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form label</span><span class="pun">.</span><span class="pln">taxlabel</span><span class="pun">{</span></li><li class="L3"><span class="pln">    font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1.1em</span><span class="pun">;</span></li><li class="L4"><span class="pln">    font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span></li><li class="L5"><span class="pln">    line</span><span class="pun">-</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2em</span><span class="pun">;</span></li><li class="L6"><span class="pln">    padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0.5em</span><span class="pun">;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form </span><span class="kwd">select</span><span class="pun">,</span></li><li class="L9"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form </span><span class="pun">.</span><span class="pln">input_search</span><span class="pun">{</span></li><li class="L0"><span class="pln">    width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">%;</span></li><li class="L1"><span class="pun">}</span></li><li class="L2"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form </span><span class="pun">.</span><span class="pln">input_cf</span><span class="pun">{</span></li><li class="L3"><span class="pln">    width</span><span class="pun">:</span><span class="lit">25</span><span class="pun">%;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form input</span><span class="pun">[</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">]{</span></li><li class="L6"><span class="pln">    </span><span class="pun">-</span><span class="pln">webkit</span><span class="pun">-</span><span class="pln">box</span><span class="pun">-</span><span class="pln">sizing</span><span class="pun">:</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">box</span><span class="pun">;</span></li><li class="L7"><span class="pln">       </span><span class="pun">-</span><span class="pln">moz</span><span class="pun">-</span><span class="pln">box</span><span class="pun">-</span><span class="pln">sizing</span><span class="pun">:</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">box</span><span class="pun">;</span></li><li class="L8"><span class="pln">            box</span><span class="pun">-</span><span class="pln">sizing</span><span class="pun">:</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">box</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span><span class="pln">            </span></li><li class="L0"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form button</span><span class="pun">,</span></li><li class="L1"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form input</span><span class="pun">,</span></li><li class="L2"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form </span><span class="kwd">select</span><span class="pun">{</span></li><li class="L3"><span class="pln">    font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%;</span></li><li class="L4"><span class="pln">    margin</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0.3em</span><span class="pun">;</span></li><li class="L5"><span class="pln">    vertical</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln"> baseline</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li><li class="L7"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form ul </span><span class="pun">{</span></li><li class="L8"><span class="pln">    margin</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form ul ul</span><span class="pun">{</span></li><li class="L1"><span class="pln">    margin</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L2"><span class="pln">    margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1.2em</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form li</span><span class="pun">{</span></li><li class="L5"><span class="pln">    list</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li><li class="L7"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form input</span><span class="pun">[</span><span class="pln">type</span><span class="pun">=</span><span class="str">"submit"</span><span class="pun">]{</span></li><li class="L8"><span class="pln">    margin</span><span class="pun">:</span><span class="lit">0.3em</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L9"><span class="pln">    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln">right</span><span class="pun">;</span></li><li class="L0"><span class="pun">}</span></li><li class="L1"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form </span><span class="pun">.</span><span class="pln">loading_img</span><span class="pun">{</span></li><li class="L2"><span class="pln">    width</span><span class="pun">:</span><span class="lit">43px</span><span class="pun">;</span></li><li class="L3"><span class="pln">    height</span><span class="pun">:</span><span class="lit">11px</span><span class="pun">;</span></li><li class="L4"><span class="pln">    background</span><span class="pun">-</span><span class="pln">image</span><span class="pun">:</span><span class="pln"> url</span><span class="pun">(</span><span class="str">'ajax-loader.gif'</span><span class="pun">);</span></li><li class="L5"><span class="pln">    display</span><span class="pun">:</span><span class="pln">block</span><span class="pun">;</span></li><li class="L6"><span class="pln">    margin</span><span class="pun">:</span><span class="lit">7px</span><span class="pln"> </span><span class="kwd">auto</span><span class="pln"> </span><span class="lit">8px</span><span class="pun">;</span></li><li class="L7"><span class="pln">    overflow</span><span class="pun">:</span><span class="pln"> hidden</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form </span><span class="pun">.</span><span class="pln">reset_button</span><span class="pun">{</span></li><li class="L0"><span class="pln">    display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span></li><li class="L1"><span class="pln">    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln"> left</span><span class="pun">;</span></li><li class="L2"><span class="pln">    padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.5em</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pun">.</span><span class="pln">taxonomies</span><span class="pun">-</span><span class="pln">filter</span><span class="pun">-</span><span class="pln">widget</span><span class="pun">-</span><span class="pln">form li span</span><span class="pun">{</span></li><li class="L5"><span class="pln">    zoom</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></li><li class="L6"><span class="pln">    filter</span><span class="pun">:</span><span class="pln"> alpha</span><span class="pun">(</span><span class="pln">opacity</span><span class="pun">=</span><span class="lit">60</span><span class="pun">);</span></li><li class="L7"><span class="pln">    opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.6</span><span class="pun">;</span></li><li class="L8"><span class="pln">    font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.9em</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span></li></ol></pre>
+<h4 id="css_files_and_structure_edit_the_css_file">Edit the CSS file</h4>
+<p>
+	Let&#39;s imagine that you wish to change the color of the labels displayed on the website.</p>
+<p>
+	For that, click on the <em><strong>Editor </strong></em>link under the <em><strong>Plugins </strong></em>panel. Now, on the right side, there&#39;s a dropdown with all the plugins installed on your blog. Please choose &quot;<strong>Taxonomies Filter Widget</strong>&quot; and then click on the <strong>&quot;taxonomies-filter-widget/css/widget.css</strong>&quot; link displayed beneath. After doing that, this is what you should see:</p>
+<p>
+	&nbsp;</p>
+<p>
+	<img alt="" src="assets/images/editcss.JPG" style="width: 910px; height: 699px; margin-left: 10px; margin-right: 10px;"></p>
+<p class="warning">
+	<em>Note</em>: As a general rule, before modifying any files in your WordPress installation, please make a backup of that file, just in case something goes wrong. Also, for PHP files, if you modify them using this procedure (not recommended), besides the backup, please disable the plugin before modifying it.</p>
+<p>
+	Inside that window, find the <strong>.taxonomies-filter-widget-form .taxlabel</strong> (highlighted with yellow in the image). By default it should look like that:</p>
+<pre class="brush: css">
+.taxonomies-filter-widget-form .taxlabel{
+&nbsp;&nbsp;&nbsp; font-weight: bold;
+&nbsp;&nbsp;&nbsp; margin: 0;
+&nbsp;&nbsp;&nbsp; padding:0.2em 0.4em;
+}
+</pre>
+<p>
+	Replace it with:</p>
+<pre class="brush: css">
+.taxonomies-filter-widget-form .taxlabel{
+&nbsp;&nbsp;&nbsp; font-weight: bold;
+&nbsp;&nbsp;&nbsp; margin: 0;
+&nbsp;&nbsp;&nbsp; padding:0.2em 0.4em;
+&nbsp;&nbsp;&nbsp; color: red;
+}
+
+</pre>
+<p>
+	Notice the <strong>color:red;</strong> added? By using that, from now on, all the labels will be <span style="color:red">red</span>.</p>
+<p class="info">
+	Make sure that you press the <strong>&quot;Update file&quot; </strong>button for changes to take effect.</p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="javascript">
+	<h3>JavaScript</h3><hr class="notop">
+<p>
+	There are 2 separate files inside the <strong>/js</strong> folder. First one, <em>(admin.js)</em>, is used in the admin panel for ordering and to toggle the advanced options pane while the second one, <em>(widget.js)</em>, is used to handle functions like the drill down for dropdowns on the front end.</p>
+<p>
+	Both JS files depend on jQuery and are enqued accordingly</p>
+<h4 id="javascript_admin.js">admin.js</h4>
+<pre class="prettyprint lang-js linenums"><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="str">"use strict"</span><span class="pun">;</span></li><li class="L2"><span class="pln">    $</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">        </span><span class="com">// update the list with available taxonomies whenever you change the post type</span></li><li class="L6"><span class="pln">        $</span><span class="pun">(</span><span class="str">'.widget-liquid-right'</span><span class="pun">).</span><span class="pln">on</span><span class="pun">(</span><span class="str">'change'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'.tfw_post_type'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span></li><li class="L7"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> widget </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">closest</span><span class="pun">(</span><span class="str">'div.widget'</span><span class="pun">);</span></li><li class="L8"><span class="pln">              wpWidgets</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">widget</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span></li><li class="L9"><span class="pln">        </span><span class="pun">});</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">        </span><span class="com">// make the taxonomies lis sortable</span></li><li class="L2"><span class="pln">        $</span><span class="pun">(</span><span class="str">'.widget-liquid-right'</span><span class="pun">).</span><span class="pln">on</span><span class="pun">(</span><span class="str">'mouseenter'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'ul.taxonomies-admin-list'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">            $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">sortable</span><span class="pun">();</span></li><li class="L4"><span class="pln">        </span><span class="pun">});</span></li><li class="L5"><span class="pun">});</span></li><li class="L6"><span class="pln">    </span></li><li class="L7"><span class="pun">}(</span><span class="pln">jQuery</span><span class="pun">));</span></li></ol></pre>
+<p>
+	&nbsp;</p>
+<h4 id="javascript_widget.js">widget.js</h4>
+<pre class="prettyprint lang-js linenums"><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="str">"use strict"</span><span class="pun">;</span></li><li class="L2"><span class="pln">    $</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    </span></li><li class="L6"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> twfForm </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">".taxonomies-filter-widget-form"</span><span class="pun">);</span></li><li class="L7"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> twfFormAjax </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">".tfw_auto"</span><span class="pun">);</span></li><li class="L8"><span class="pln"> </span></li><li class="L9"><span class="pln">        </span><span class="com">// Handle Ajax DrillDowns</span></li><li class="L0"><span class="pln">        twfForm</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'change'</span><span class="pun">,</span><span class="str">'.tax-with-childrens'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln">  </span><span class="pun">{</span></li><li class="L1"><span class="pln">            e</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L2"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> myForm </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">closest</span><span class="pun">(</span><span class="str">"form"</span><span class="pun">);</span></li><li class="L3"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> tax </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">attr</span><span class="pun">(</span><span class="str">'id'</span><span class="pun">);</span></li><li class="L4"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> term </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">val</span><span class="pun">();</span></li><li class="L5"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> current_selection </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">);</span></li><li class="L6"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> ajaxLoader </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;div class="loading_img"&gt;&lt;/div&gt;'</span><span class="pun">;</span></li><li class="L7"><span class="pln">            $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">after</span><span class="pun">(</span><span class="pln">ajaxLoader</span><span class="pun">);</span></li><li class="L8"><span class="pln">            $</span><span class="pun">.</span><span class="pln">ajax</span></li><li class="L9"><span class="pln">            </span><span class="pun">(</span></li><li class="L0"><span class="pln">                </span><span class="pun">{</span></li><li class="L1"><span class="pln">                    type</span><span class="pun">:</span><span class="pln"> </span><span class="str">"POST"</span><span class="pun">,</span></li><li class="L2"><span class="pln">                    url</span><span class="pun">:</span><span class="pln"> ajax_object</span><span class="pun">.</span><span class="pln">ajax_url</span><span class="pun">,</span><span class="pln">     </span></li><li class="L3"><span class="pln">                    data</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">                        action</span><span class="pun">:</span><span class="pln"> </span><span class="str">'get_term_childrens'</span><span class="pun">,</span></li><li class="L5"><span class="pln">                        taxonomy</span><span class="pun">:</span><span class="pln"> tax</span><span class="pun">,</span></li><li class="L6"><span class="pln">                        term</span><span class="pun">:</span><span class="pln"> term</span></li><li class="L7"><span class="pln">                    </span><span class="pun">},</span></li><li class="L8"><span class="pln">                    success</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">results</span><span class="pun">)</span></li><li class="L9"><span class="pln">                    </span><span class="pun">{</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">                        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">results</span><span class="pun">){</span></li><li class="L2"><span class="pln">                            $</span><span class="pun">(</span><span class="pln">current_selection</span><span class="pun">).</span><span class="pln">nextAll</span><span class="pun">(</span><span class="str">"#sub_cat_"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> tax </span><span class="pun">+</span><span class="pln"> </span><span class="str">", .loading_img"</span><span class="pun">).</span><span class="pln">remove</span><span class="pun">();</span></li><li class="L3"><span class="pln">                            $</span><span class="pun">(</span><span class="pln">current_selection</span><span class="pun">).</span><span class="pln">after</span><span class="pun">(</span><span class="pln">results</span><span class="pun">);</span></li><li class="L4"><span class="pln">                            </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">myForm</span><span class="pun">.</span><span class="pln">hasClass</span><span class="pun">(</span><span class="str">"tfw_auto"</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> myForm</span><span class="pun">.</span><span class="pln">submit</span><span class="pun">();</span><span class="pln"> </span><span class="pun">};</span></li><li class="L5"><span class="pln">                        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">                            $</span><span class="pun">(</span><span class="pln">current_selection</span><span class="pun">).</span><span class="pln">nextAll</span><span class="pun">(</span><span class="str">"#sub_cat_"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> tax </span><span class="pun">+</span><span class="pln"> </span><span class="str">", .loading_img"</span><span class="pun">).</span><span class="pln">remove</span><span class="pun">();</span></li><li class="L7"><span class="pln">                            </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">myForm</span><span class="pun">.</span><span class="pln">hasClass</span><span class="pun">(</span><span class="str">"tfw_auto"</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> myForm</span><span class="pun">.</span><span class="pln">submit</span><span class="pun">();</span><span class="pln"> </span><span class="pun">};</span></li><li class="L8"><span class="pln">                        </span><span class="pun">}</span></li><li class="L9"><span class="pln">                    </span><span class="pun">}</span></li><li class="L0"><span class="pln">                </span><span class="pun">}</span></li><li class="L1"><span class="pln">            </span><span class="pun">);</span></li><li class="L2"><span class="pln">                                               </span></li><li class="L3"><span class="pln">        </span><span class="pun">});</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">        </span><span class="com">// Select Multiple</span></li><li class="L6"><span class="pln">        $</span><span class="pun">(</span><span class="str">'.taxonomies-filter-widget-form select[multiple]'</span><span class="pun">).</span><span class="pln">change</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln">  </span><span class="pun">{</span></li><li class="L7"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> values </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">closest</span><span class="pun">(</span><span class="str">'li'</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"select[multiple] option:selected"</span><span class="pun">).</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">value</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}).</span><span class="kwd">get</span><span class="pun">().</span><span class="pln">join</span><span class="pun">(</span><span class="pln">ajax_object</span><span class="pun">.</span><span class="pln">relation</span><span class="pun">);</span></li><li class="L8"><span class="pln">            $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">closest</span><span class="pun">(</span><span class="str">'li'</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"input[type=hidden]"</span><span class="pun">).</span><span class="pln">val</span><span class="pun">(</span><span class="pln">values</span><span class="pun">);</span></li><li class="L9"><span class="pln">        </span><span class="pun">});</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">        </span><span class="com">// Multiple Checkboxes</span></li><li class="L2"><span class="pln">        $</span><span class="pun">(</span><span class="str">'.taxonomies-filter-widget-form input:checkbox'</span><span class="pun">).</span><span class="pln">change</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln">  </span><span class="pun">{</span></li><li class="L3"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> values </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">closest</span><span class="pun">(</span><span class="str">'ul.checkboxes_list'</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"input:checked"</span><span class="pun">).</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">value</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}).</span><span class="kwd">get</span><span class="pun">().</span><span class="pln">join</span><span class="pun">(</span><span class="pln">ajax_object</span><span class="pun">.</span><span class="pln">relation</span><span class="pun">);</span></li><li class="L4"><span class="pln">            $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">closest</span><span class="pun">(</span><span class="str">'ul.checkboxes_list'</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"input[type=hidden]"</span><span class="pun">).</span><span class="pln">val</span><span class="pun">(</span><span class="pln">values</span><span class="pun">);</span></li><li class="L5"><span class="pln">        </span><span class="pun">});</span><span class="pln">        </span></li><li class="L6"><span class="pln">        </span></li><li class="L7"><span class="pln">        </span><span class="com">// Auto submit</span></li><li class="L8"><span class="pln">        twfFormAjax</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'change'</span><span class="pun">,</span><span class="pln"> </span><span class="str">".noUiSlider, input, select:not(.tax-with-childrens)"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">            $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">closest</span><span class="pun">(</span><span class="str">'form'</span><span class="pun">).</span><span class="pln">submit</span><span class="pun">();</span></li><li class="L0"><span class="pln">        </span><span class="pun">})</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">        </span><span class="com">// Clear the url from empty elements</span></li><li class="L3"><span class="pln">        twfForm</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'submit'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">            $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">'input:not([name=s], [type=hidden], .input_cf), select'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">                </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">value </span><span class="pun">==</span><span class="pln"> </span><span class="str">'0'</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">value </span><span class="pun">==</span><span class="pln"> </span><span class="str">''</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">                    $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">prop</span><span class="pun">(</span><span class="str">"disabled"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li><li class="L8"><span class="pln">                </span><span class="pun">}</span></li><li class="L9"><span class="pln">            </span><span class="pun">});</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">        </span><span class="pun">});</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">         </span><span class="com">// Enable all previously disabled elements</span></li><li class="L4"><span class="pln">        twfForm</span><span class="pun">.</span><span class="pln">find</span><span class="pun">(</span><span class="str">'input[type=text], select'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">                    $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">prop</span><span class="pun">(</span><span class="str">"disabled"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></li><li class="L6"><span class="pln">        </span><span class="pun">});</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">});</span></li><li class="L9"><span class="pln">    </span></li><li class="L0"><span class="pln">    </span></li><li class="L1"><span class="pun">}(</span><span class="pln">jQuery</span><span class="pun">));</span></li><li class="L2"><span class="pln">&nbsp;</span></li></ol></pre>
+<p>
+	&nbsp;</p>
+</section>
+<section id="php_files">
+	<h3>PHP Files</h3><hr class="notop">
+<p>
+	This plugin has 3 PHP files responsable for creating the widget, displaying the admin panel and for displaying the widget on your blog. These files are:</p>
+<h4 id="php_files_plugin.php">plugin.php</h4>
+<p>
+	This file is located in the root of the &quot;t<strong>axonomies-filter-widget</strong>&quot; folder. This is the main file that holds the php Class responsable with the creation and registration of the widget.</p>
+<p>
+	<img alt="" src="assets/images/php-preview.JPG" style="width: 898px; height: 855px; margin-left: 10px; margin-right: 10px;"></p>
+<p class="warning">
+	Please do not modify this file, unless you are familiar with PHP and you know what your doing.</p>
+<p>
+	&nbsp;</p>
+<p>
+	To separate<span class="st"> <em>business logic</em> from <em>presentation logic</em></span>, the next two files are included in the main <strong>plugin.php</strong> file when required.</p>
+<h4 id="php_files_admin.php">admin.php</h4>
+<p>
+	This file is located inside the <strong>/views</strong> folder and it is used to markup the administration form of the widget.</p>
+<h4 id="php_files_widget.php">widget.php</h4>
+<p>
+	This file is located inside the<strong> /views</strong> folder and it is used to markup the public-facing widget.</p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="sources_and_credits">
+	<h3>Sources and Credits</h3><hr class="notop">
+<p>
+	This plugin uses only one image <em>&quot;css/ajax-loader.gif&quot;</em>&nbsp; which has been generated with <a href="http://www.ajaxload.info/ " target="_blank">http://www.ajaxload.info/</a> (it is stated at the bottom of the website that <em>&quot;Generated gifs are totally free for use&quot;</em>). For the range slider, this plugin uses <a href="http://refreshless.com/nouislider/">noUiSlider jQuery slider</a> (jquery.nouislider.min.js and nouislider.fox.css) which is free to use in commercial projects. No other images or sounds are provided with this plugin. The PHP code used to create the plugin has been written by following the standards set by the <a href="http://codex.wordpress.org/"><em>WordPress Codex</em></a>. The plugin is written in OOP PHP, using the <a href="http://codex.wordpress.org/Widgets_API"><em>Widgets API</em></a></p>
+<hr>
+<p>
+	Once again, thank you so much for purchasing this plugin. As I said at the beginning, I&#39;d be glad to help you if you have any questions relating to this plugin. No guarantees, but I&#39;ll do my best to assist. If you have a more general question relating to the plugins on Codecanyon, you might consider visiting the forums and asking your question in the &quot;Item Discussion&quot; section.</p>
+<p>
+	<strong>Cristian Ionel</strong></p>
+</section>
+
+	</div>
+</body>
+</html>
