@@ -12,7 +12,7 @@ add_filter('registration_errors', 'smart_registration_errors', 10, 3);
 add_action('user_register','save_smart_register_values');
 
 function add_smart_metabox(){
-	 add_meta_box('smart_metabox_for_response', 'Response Post\'s Organization', 'smart_organization_function', 'response_surveys', 'normal', 'default');
+	 add_meta_box('smart_metabox_for_response', 'Response Post\'s Organization', 'smart_organization_function', 'responses', 'normal', 'default');
 }
 function smart_organization_function(){
 	global $wpdb,$post;
