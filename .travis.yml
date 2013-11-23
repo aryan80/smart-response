@@ -9,6 +9,11 @@ php:
     - "5.3"
     - "5.4"
 
+before_script:
+  - wget http://getcomposer.org/composer.phar
+  - php composer.phar install
+  - phpunit
+
 # Specify versions of WordPress to test against
 # WP_VERSION = WordPress version number (use "master" for SVN trunk)
 # WP_MULTISITE = whether to test multisite (use either "0" or "1")
@@ -21,10 +26,6 @@ env:
     - WP_VERSION=3.4.2 WP_MULTISITE=1
     - WP_VERSION=3.3.3 WP_MULTISITE=1
     - WP_VERSION=3.2.1 WP_MULTISITE=1
-
-
-before_install:
-  - php composer.phar install
 
 # Grab the setup script and execute
 before_script:
