@@ -22,10 +22,13 @@ env:
     - WP_VERSION=3.3.3 WP_MULTISITE=1
     - WP_VERSION=3.2.1 WP_MULTISITE=1
 
+
+before_install:
+  - wget http://getcomposer.org/composer.phar
+  - php composer.phar install
+
 # Grab the setup script and execute
 before_script:
-    - wget http://getcomposer.org/composer.phar
-    - php composer.phar install
     - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
     - source setup.sh
 
