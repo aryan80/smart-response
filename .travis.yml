@@ -24,7 +24,7 @@ env:
 
 
 before_install:
-  - php /home/travis/.phpenv/versions/5.3.26/bin/composer.phar self-update
+  - php composer.phar install
 
 # Grab the setup script and execute
 before_script:
