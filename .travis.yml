@@ -9,11 +9,6 @@ php:
     - "5.3"
     - "5.4"
 
-before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar install
-  - phpunit
-
 # Specify versions of WordPress to test against
 # WP_VERSION = WordPress version number (use "master" for SVN trunk)
 # WP_MULTISITE = whether to test multisite (use either "0" or "1")
@@ -29,6 +24,8 @@ env:
 
 # Grab the setup script and execute
 before_script:
+    - wget http://getcomposer.org/composer.phar
+    - php composer.phar install
     - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
     - source setup.sh
 
