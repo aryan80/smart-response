@@ -1,0 +1,20 @@
+language: php
+
+php:
+    - 5.3
+    - 5.4
+
+env:
+    - WP_VERSION=master WP_MULTISITE=0
+    - WP_VERSION=master WP_MULTISITE=1
+    - WP_VERSION=3.7.1 WP_MULTISITE=0
+    - WP_VERSION=3.7.1 WP_MULTISITE=1
+
+before_install:
+    - git submodule update --init --recursive
+
+before_script:
+    # set up WP install
+    - cd wp-content/plugins/smart_response/test
+
+script: phpunit
