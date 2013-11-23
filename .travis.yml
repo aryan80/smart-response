@@ -27,7 +27,8 @@ env:
 
 # Grab the setup script and execute
 before_script:
-    - composer install --dev --prefer-source
+    - curl -s http://getcomposer.org/installer | php
+    - php composer.phar install
     - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
     - source setup.sh
 
