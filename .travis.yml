@@ -30,5 +30,11 @@ before_script:
     - sed -i "s/yourpasswordhere//" wp-tests-config.php
     # set up database
     - mysql -e 'CREATE DATABASE wordpress_test;' -uroot
+    - # Put various components in proper folders
+    - plugin_slug=$(basename/wp-content/plugins/smart_response $(pwd))
+    - plugin_dir=$WP_CORE_DIRwp-content/plugins/$plugin_slug
+    - cd ..
+    - mv $plugin_slug $plugin_dir
+    - cd $plugin_dir
 
 script: phpunit
