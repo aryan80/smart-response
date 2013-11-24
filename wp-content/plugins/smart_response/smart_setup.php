@@ -11,57 +11,108 @@ add_action('register_form','smart_register_form');
 add_filter('registration_errors', 'smart_registration_errors', 10, 3);
 add_action('user_register','save_smart_register_values');
 
+/**
+ * Adds a custom meta box to the main column on the Response edit screens.
+ */
 function add_smart_metabox(){
-	 add_meta_box('smart_metabox_for_response', 'Response Post\'s Organization', 'smart_organization_function', 'responses', 'normal', 'default');
+	 add_meta_box('smart_metabox_for_response', 'Organization and Disaster Information', 'smart_organization_function', 'responses', 'normal', 'high');
 }
-function smart_organization_function(){
+
+/**
+ * Prints the box content.
+ *
+ * @param WP_Post $post The object for the current post/page.
+ */
+function smart_organization_function($post){
 	global $wpdb,$post;
 			$table=$wpdb->prefix.posts;
-			$org=$wpdb->get_results("select post_name from ".$table." where post_type='organizations' and post_status='publish'",ARRAY_A);
-			$disasters=$wpdb->get_results("select post_name from ".$table." where post_type='disasters' and post_status='publish'",ARRAY_A);
-			$corg=get_post_meta($post->ID,'organization',true);
-			$disaster=get_post_meta($post->ID,'disaster',true);
+			$disasters=$wpdb->get_results("select post_title from ".$table." where post_type='disasters' and post_status='publish'",ARRAY_A);
+            $user_id = get_current_user_id();
+            // get association associated with user
+            $corg = trim(get_user_meta($user_id, 'organization', true));
+            // get organization post
+            $orgPost=$wpdb->get_results("select ID from ".$table." where post_status='publish' and post_type='organizations' and post_title='" . $corg . "'");
+            $orgPost = $orgPost[0];
+            // get disaster associated to current post
+			$disaster = trim(get_post_meta($post->ID,'disaster',true));
+            // get disasters already associated with the organization
+            $orgDisasters = get_post_meta($orgPost->ID,'disasters',false);
+            $tempDisaster = isset($_POST['disaster']) and $_POST['disaster']!='';
 			?>
 
-            <div style="float:left; width:100%;"><h4>
-                   <?php echo _e('Organizations : ','smart');?> <select name="organizations" >
-                    	<option value="" >Select Organization</option>
-                        <?php
-							if(!empty($org)){
-								foreach($org as $one_org){
-									echo '<option value="'.$one_org['post_name'].'" '.($corg==$one_org['post_name']?'selected':'').'>'.$one_org['post_name'].'</option>';
-								}
-							}
-						?>
+			<?php print_r($orgDisasters) ?>
 
-                    </select>
-           </h4></div>
-           <div style="float:left; width:100%;"><h4><label for="current_disaster">This Response's disaster is &nbsp;:&nbsp;<strong><?php echo $disaster;?></strong></label> </h4></div>
-            <div style="float:left; width:100%;"><h4>
-                   <?php echo _e('Disasters : ','smart');?> <select name="disasters" onchange="this.form.submit();">
-                    	<option value="" >Select Disaster</option>
+
+            <div style="width:100%;">
+               <label>Organization:
+                  <input type="text" name="custom_organization" value="<?php echo $corg ?>"  />
+               </label>
+           </div>
+           <div style="width:100%;">
+               <label>Disaster:
+               <?php
+               if($disaster && $disaster != ''){
+               ?>
+                  <input type="text" name="disaster" value="<?php echo $disaster ?>" disabled />
+                  <p><strong>Note:</strong> You can not change the disaster once it has been set.</p>
+               <?php } else { ?>
+                   <select name="disaster">
+                        <option value="" >Select Disaster</option>
                          <?php
-							if(!empty($disasters)){
-								foreach($disasters as $one_disater){
-									if($disaster!=$one_disater['post_name'])
-									echo '<option value="'.$one_disater['post_name'].'" >'.$one_disater['post_name'].'</option>';
-								}
-							}
-						?>
-                    </select>
-                    </h4>
+                            if(!empty($disasters)){
+                                foreach($disasters as $one_disater){
+                                    $title = trim($one_disater['post_title']);
+                                    // only show disaster as in option if it's not associated
+                                    // already with the organization, preventing orgs
+                                    // from creating more than 1 response per disaster
+                                    if(!in_array($title,$orgDisasters)){
+                                        echo '<option value="'.$title.'" '.($tempDisaster==$title?'selected':'').'>'.$title.'</option>';
+                                    }
+                                }
+                            }
+                          ?>
+                </select>
+               <?php } ?>
+               </label>
            </div>
 <?php
 }
 add_action( 'add_meta_boxes', 'add_smart_metabox' );
-function smart_save_organization_meta($post_id,$post){
 
-	if(isset($_POST['organization']) and $_POST['organization']!=''){
-		update_post_meta($post_id,'organization',$_POST['organization']);
-	}
-	if(isset($_POST['disaster']) and $_POST['disaster']!=''){
-		update_post_meta($post_id,'disaster',$_POST['disaster']);
-	}
+/**
+ * Extra steps taken on saving posts
+ * @param WP_Post->ID $post_id The object ID of the current post/page.
+ */
+function smart_save_organization_meta($post_id){
+    global $wpdb;
+
+    if ( $_POST['post_type'] != 'responses' ) {
+        return;
+    }
+
+    $table=$wpdb->prefix.posts;
+
+    // update this Post's custom meta data for organization and disaster
+
+    if($_POST['organization'] and $_POST['organization']!=''){
+        update_post_meta($post_id,'organization',$_POST['organization']);
+    }
+
+    if($_POST['disaster'] and $_POST['disaster']!=''){
+        update_post_meta($post_id,'disaster',$_POST['disaster']);
+    }
+
+
+    // get the organization's Post
+    $orgPost=$wpdb->get_results("select ID from ".$table." where post_status='publish' and post_type='organizations' and post_title='" . $_POST['custom_organization'] . "'");
+    $orgPost = $orgPost[0];
+
+    // add the disaster to organization's Post disasters meta data field
+    if($orgPost){
+        add_post_meta($orgPost->ID,'disasters',$_POST['disaster']);
+    }
+
+
 	//here is the custom fields unix time stamps
 	if(isset($_POST)){
 		//exclude the default fields of posts for updating the custom fields into metaposts
