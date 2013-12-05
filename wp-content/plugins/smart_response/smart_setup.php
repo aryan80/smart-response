@@ -1,4 +1,4 @@
-<?php
+<?php 
 /* plugin Name: Smart Register
 Author: Aryan Choudhary
 Email: aryanchoudhary80@gmail.com
@@ -11,108 +11,57 @@ add_action('register_form','smart_register_form');
 add_filter('registration_errors', 'smart_registration_errors', 10, 3);
 add_action('user_register','save_smart_register_values');
 
-/**
- * Adds a custom meta box to the main column on the Response edit screens.
- */
 function add_smart_metabox(){
-	 add_meta_box('smart_metabox_for_response', 'Organization and Disaster Information', 'smart_organization_function', 'responses', 'normal', 'high');
+	 add_meta_box('smart_metabox_for_response', 'Response Post\'s Organization', 'smart_organization_function', 'response_surveys', 'normal', 'default');
 }
-
-/**
- * Prints the box content.
- *
- * @param WP_Post $post The object for the current post/page.
- */
-function smart_organization_function($post){
+function smart_organization_function(){
 	global $wpdb,$post;
 			$table=$wpdb->prefix.posts;
-			$disasters=$wpdb->get_results("select post_title from ".$table." where post_type='disasters' and post_status='publish'",ARRAY_A);
-            $user_id = get_current_user_id();
-            // get association associated with user
-            $corg = trim(get_user_meta($user_id, 'organization', true));
-            // get organization post
-            $orgPost=$wpdb->get_results("select ID from ".$table." where post_status='publish' and post_type='organizations' and post_title='" . $corg . "'");
-            $orgPost = $orgPost[0];
-            // get disaster associated to current post
-			$disaster = trim(get_post_meta($post->ID,'disaster',true));
-            // get disasters already associated with the organization
-            $orgDisasters = get_post_meta($orgPost->ID,'disasters',false);
-            $tempDisaster = isset($_POST['disaster']) and $_POST['disaster']!='';
+			$org=$wpdb->get_results("select post_name from ".$table." where post_type='organizations' and post_status='publish'",ARRAY_A);
+			$disasters=$wpdb->get_results("select post_name from ".$table." where post_type='disasters' and post_status='publish'",ARRAY_A);
+			$corg=get_post_meta($post->ID,'organization',true);
+			$disaster=get_post_meta($post->ID,'disaster',true);
 			?>
-
-			<?php print_r($orgDisasters) ?>
-
-
-            <div style="width:100%;">
-               <label>Organization:
-                  <input type="text" name="custom_organization" value="<?php echo $corg ?>"  />
-               </label>
-           </div>
-           <div style="width:100%;">
-               <label>Disaster:
-               <?php
-               if($disaster && $disaster != ''){
-               ?>
-                  <input type="text" name="disaster" value="<?php echo $disaster ?>" disabled />
-                  <p><strong>Note:</strong> You can not change the disaster once it has been set.</p>
-               <?php } else { ?>
-                   <select name="disaster">
-                        <option value="" >Select Disaster</option>
+             
+            <div style="float:left; width:100%;"><h4>	
+                   <?php echo _e('Organizations : ','smart');?> <select name="organizations" >
+                    	<option value="" >Select Organization</option>
+                        <?php
+							if(!empty($org)){
+								foreach($org as $one_org){
+									echo '<option value="'.$one_org['post_name'].'" '.($corg==$one_org['post_name']?'selected':'').'>'.$one_org['post_name'].'</option>';
+								}
+							}
+						?>
+                        
+                    </select>
+           </h4></div>
+           <div style="float:left; width:100%;"><h4><label for="current_disaster">This Response's disaster is &nbsp;:&nbsp;<strong><?php echo $disaster;?></strong></label> </h4></div>
+            <div style="float:left; width:100%;"><h4>
+                   <?php echo _e('Disasters : ','smart');?> <select name="disasters" onchange="this.form.submit();">
+                    	<option value="" >Select Disaster</option>
                          <?php
-                            if(!empty($disasters)){
-                                foreach($disasters as $one_disater){
-                                    $title = trim($one_disater['post_title']);
-                                    // only show disaster as in option if it's not associated
-                                    // already with the organization, preventing orgs
-                                    // from creating more than 1 response per disaster
-                                    if(!in_array($title,$orgDisasters)){
-                                        echo '<option value="'.$title.'" '.($tempDisaster==$title?'selected':'').'>'.$title.'</option>';
-                                    }
-                                }
-                            }
-                          ?>
-                </select>
-               <?php } ?>
-               </label>
+							if(!empty($disasters)){
+								foreach($disasters as $one_disater){
+									if($disaster!=$one_disater['post_name'])
+									echo '<option value="'.$one_disater['post_name'].'" >'.$one_disater['post_name'].'</option>';
+								}
+							}
+						?>
+                    </select>
+                    </h4>
            </div>
-<?php
+<?php 
 }
 add_action( 'add_meta_boxes', 'add_smart_metabox' );
+function smart_save_organization_meta($post_id,$post){
 
-/**
- * Extra steps taken on saving posts
- * @param WP_Post->ID $post_id The object ID of the current post/page.
- */
-function smart_save_organization_meta($post_id){
-    global $wpdb;
-
-    if ( $_POST['post_type'] != 'responses' ) {
-        return;
-    }
-
-    $table=$wpdb->prefix.posts;
-
-    // update this Post's custom meta data for organization and disaster
-
-    if($_POST['organization'] and $_POST['organization']!=''){
-        update_post_meta($post_id,'organization',$_POST['organization']);
-    }
-
-    if($_POST['disaster'] and $_POST['disaster']!=''){
-        update_post_meta($post_id,'disaster',$_POST['disaster']);
-    }
-
-
-    // get the organization's Post
-    $orgPost=$wpdb->get_results("select ID from ".$table." where post_status='publish' and post_type='organizations' and post_title='" . $_POST['custom_organization'] . "'");
-    $orgPost = $orgPost[0];
-
-    // add the disaster to organization's Post disasters meta data field
-    if($orgPost){
-        add_post_meta($orgPost->ID,'disasters',$_POST['disaster']);
-    }
-
-
+	if(isset($_POST['organization']) and $_POST['organization']!=''){
+		update_post_meta($post_id,'organization',$_POST['organization']);
+	}
+	if(isset($_POST['disaster']) and $_POST['disaster']!=''){
+		update_post_meta($post_id,'disaster',$_POST['disaster']);
+	}
 	//here is the custom fields unix time stamps
 	if(isset($_POST)){
 		//exclude the default fields of posts for updating the custom fields into metaposts
@@ -132,3 +81,105 @@ function smart_save_organization_meta($post_id){
 }
 add_action('save_post', 'smart_save_organization_meta', 1, 2);
 
+
+
+function hide_personal_options(){ 
+?>
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    jQuery("#your-profile .form-table:first, #your-profile h3:first").remove();
+  });
+</script>
+<?php }
+add_action('admin_head','hide_personal_options');
+function modify_contact_methods($profile_fields) {
+
+	// Add new fields
+	$profile_fields['user_phone1'] = 'Phone 1';
+	$profile_fields['user_phone2'] = 'Phone 2';
+	$profile_fields['user_mobile1'] = 'Mobile 1';
+	$profile_fields['user_mobile2'] = 'Mobile 2';
+	return $profile_fields;
+}
+add_filter('user_contactmethods', 'modify_contact_methods');
+function add_organization_section( $user ) {
+?>
+	<h3><?php _e('Organization Section', 'smart'); ?></h3>
+	
+	<table class="form-table">
+		<tr>
+			<th>
+				<label for="organization"><?php _e('Organization Name', 'smart'); ?>
+			</label></th>
+			<td>
+				<input type="text" name="organization" id="organization" value="<?php echo esc_attr( get_the_author_meta( 'organization', $user->ID ) ); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e('Please Enter Organization Name.', 'smart'); ?></span>
+			</td>
+		</tr>
+         <tr>
+			<th>
+				<label for="title"><?php _e('Organization Title', 'smart'); ?>
+			</label></th>
+			<td>
+				<input type="text" name="title" id="title" value="<?php echo esc_attr( get_the_author_meta( 'title', $user->ID ) ); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e('Please Enter Organization Title.', 'smart'); ?></span>
+			</td>
+		</tr>
+        <tr>
+			<th>
+				<label for="user_org_contact_name"><?php _e('Contact Name', 'smart'); ?>
+			</label></th>
+			<td>
+				<input type="text" name="user_org_contact_name" id="user_org_contact_name" value="<?php echo esc_attr( get_the_author_meta( 'user_org_contact_name', $user->ID ) ); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e('Please Enter Contact Name for Organization.', 'smart'); ?></span>
+			</td>
+		</tr>
+        <tr>
+			<th>
+				<label for="user_org_contact_title"><?php _e('Contact Title', 'smart'); ?>
+			</label></th>
+			<td>
+				<input type="text" name="user_org_contact_title" id="user_org_contact_title" value="<?php echo esc_attr( get_the_author_meta( 'user_org_contact_title', $user->ID ) ); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e('Please Enter Organization Contact Title.', 'smart'); ?></span>
+			</td>
+		</tr>
+        <tr>
+			<th>
+				<label for="user_org_contact_phone"><?php _e('Contact Phone', 'smart'); ?>
+			</label></th>
+			<td>
+				<input type="text" name="user_org_contact_phone" id="user_org_contact_phone" value="<?php echo esc_attr( get_the_author_meta( 'user_org_contact_phone', $user->ID ) ); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e('Please Enter Organization Contact Phone.', 'smart'); ?></span>
+			</td>
+		</tr>
+         <tr>
+			<th>
+				<label for="user_org_contact_email"><?php _e('Contact Email', 'smart'); ?>
+			</label></th>
+			<td>
+				<input type="text" name="user_org_contact_email" id="user_org_contact_email" value="<?php echo esc_attr( get_the_author_meta( 'user_org_contact_email', $user->ID ) ); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e('Please Enter Organization Contact Email.', 'smart'); ?></span>
+			</td>
+		</tr>
+	</table>
+<?php }
+
+function save_organization_section( $user_id ) {
+	
+	if ( !current_user_can( 'edit_user', $user_id ) )
+		return FALSE;
+	update_usermeta( $user_id, 'organization', $_POST['organization'] );
+	update_usermeta( $user_id, 'title', $_POST['title'] );
+	update_usermeta( $user_id, 'user_org_contact_name', $_POST['user_org_contact_name'] );
+	update_usermeta( $user_id, 'user_org_contact_title', $_POST['user_org_contact_title'] );
+	update_usermeta( $user_id, 'user_org_contact_phone', $_POST['user_org_contact_phone'] );
+	update_usermeta( $user_id, 'user_org_contact_email', $_POST['user_org_contact_email'] );
+}
+
+add_action( 'show_user_profile', 'add_organization_section' );
+add_action( 'edit_user_profile', 'add_organization_section' );
+
+add_action( 'personal_options_update', 'save_organization_section' );
+add_action( 'edit_user_profile_update', 'save_organization_section' );
+ ?>
+        	
