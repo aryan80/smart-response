@@ -55,7 +55,6 @@ function smart_organization_function(){
 }
 add_action( 'add_meta_boxes', 'add_smart_metabox' );
 function smart_save_organization_meta($post_id,$post){
-
 	if(isset($_POST['organization']) and $_POST['organization']!=''){
 		update_post_meta($post_id,'organization',$_POST['organization']);
 	}
@@ -92,6 +91,7 @@ function hide_personal_options(){
 </script>
 <?php }
 add_action('admin_head','hide_personal_options');
+
 function modify_contact_methods($profile_fields) {
 
 	// Add new fields
@@ -181,5 +181,40 @@ add_action( 'edit_user_profile', 'add_organization_section' );
 
 add_action( 'personal_options_update', 'save_organization_section' );
 add_action( 'edit_user_profile_update', 'save_organization_section' );
+
+function is_orgnization_has_permission($organization_id=NULL){
+	//function to check if this organization has the permission
+	$check_post_type='response_surveys';
+	$current_screen=get_current_screen();
+	$action=$current_screen->action;
+	$post_type=$current_screen->post_type;
+	if($action=='add'){
+		if($check_post_type==$post_type){
+			//then check the organizations disaster and surveys
+			$total_disasters_for_this_org=get_post_meta($user_org_id,'no_of_disaster',true);
+			$total_disasters_res_for_this_org=get_post_meta($user_org_id,'no_of_disaster_responses',true);
+			if($total_disasters_for_this_org!=$total_disasters_res_for_this_org){
+				echo 'The Organization do not has permission to add new survey!All Desasters have been responded for the user\'s organization.';
+				return true;
+			}else{
+				echo 'The user\'s organization has permission for the disasters';	
+				return false; // means the organization has completed all survesy for all disasters. no disaster is pending.	
+			}
+		}
+	}
+	//check if the post type of current post edit is 
+}
+function check_new_survey_for_the_current_user_organization(){
+	//check for post survey that user have permission or not to create a survey for this disater for this country
+	//so get user's organization first
+	$current_user = wp_get_current_user();
+	$userid= $current_user->ID;
+	$user_org_id=get_user_meta($userid,'organization',true);
+	//checkfor a permission for this org
+	if(is_orgnization_has_permission($user_org_id)){ 
+		exit;
+	}
+}
+add_action('admin_head','check_new_survey_for_the_current_user_organization');
  ?>
         	
